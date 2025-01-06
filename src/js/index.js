@@ -1,13 +1,22 @@
-import { YMap, YMapDefaultSchemeLayer } from 'lib/ymaps.js';
+import '../styles/index.css';
+import * as ymaps3 from 'ymaps3';
 
-const map = new YMap(
-    document.getElementById('app'),
-    {
-        location: {
-              center: [37.588144, 55.733842],
-              zoom: 10
-        }
-    }
-);
+async function initMap() {
+  await ymaps3.ready;
 
-map.addChild(new YMapDefaultSchemeLayer());
+  const {YMap, YMapDefaultSchemeLayer} = ymaps3;
+
+  const map = new YMap(
+      document.getElementById('map'),
+      {
+          location: {
+              center: [30.608271, 59.738259],
+              zoom: 13
+          }
+      }
+  );
+
+  map.addChild(new YMapDefaultSchemeLayer());
+}
+
+initMap();

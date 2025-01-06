@@ -1,12 +1,8 @@
-import path from 'path';
-import { fileURLToPath } from 'url';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-export default {
+module.exports = {
     context: path.resolve(__dirname, "src"),
     mode: "development",
     entry: {
@@ -16,11 +12,6 @@ export default {
         filename: "bundle.js",
         path: path.resolve(__dirname, "dist"),
         clean: true,
-    },
-    resolve: {
-        alias: {
-            lib: path.resolve(__dirname, 'lib') // Алиас для директории "lib"
-        }
     },
     module: {
         rules: [
@@ -59,4 +50,8 @@ export default {
         compress: true,
         port: 9000,
     },
+    externals: {
+        ymaps3: 'ymaps3'
+    },
+    devtool: 'cheap-source-map'
 };
